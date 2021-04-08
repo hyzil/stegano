@@ -13,7 +13,7 @@ def image_lsb_encode(file_name, message):
     bit_array = [int(i) for i in ba]
 
     # duplicate the original picture
-    new_file_name = "media/lsb_" + file_name
+    new_file_name = "media/lsb_" + file_name.split("/")[-1]
     im = Image.open(file_name)
     im.save(new_file_name)
 

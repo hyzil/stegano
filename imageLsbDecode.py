@@ -1,7 +1,7 @@
 from PIL import Image
 
-def image_lsb_decode():
-    im = Image.open("media/lsb_tree.png")
+def image_lsb_decode(file_name):
+    im = Image.open(file_name)
     pixels = im.load()
     width, height = im.size
     extracted = ''
@@ -28,4 +28,7 @@ def image_lsb_decode():
                 i+=1
         if end_of_message:
             break
-    print(''.join(chars))
+    if end_of_message:
+        return "".join(chars)
+    else:
+        return ""

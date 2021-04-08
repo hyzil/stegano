@@ -1,8 +1,8 @@
 import soundfile as sf
 import struct
 
-def audio_lsb_decode():
-    with sf.SoundFile("media/lsb_Tartaglia1.wav", "r") as audio:
+def audio_lsb_decode(file_name):
+    with sf.SoundFile(file_name, "r") as audio:
         audio_data = audio.read(frames=-1, dtype='int16')
         extracted = ""
         end_of_message = 0
@@ -25,5 +25,9 @@ def audio_lsb_decode():
                     i+=1
             if end_of_message:
                 break
-        print(''.join(chars))
+        if end_of_message:
+            return "".join(chars)
+        else:
+            return ""
+        
     

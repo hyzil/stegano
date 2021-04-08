@@ -15,7 +15,7 @@ def audio_lsb_encode(file_name, message):
     ba.frombytes(message.encode(encoding="latin_1", errors="replace"))
     bit_array = [int(i) for i in ba]
 
-    new_file_name = "media/lsb_" + file_name
+    new_file_name = "media/lsb_" + file_name.split("/")[-1]
 
     i=0
     # open the original audio file
