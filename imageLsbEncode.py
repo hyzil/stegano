@@ -20,7 +20,7 @@ def image_lsb_encode(file_name, message):
     im = Image.open(new_file_name)
     width, height = im.size
     pixels = im.load()
-    
+
     i = 0
     # iterate over all pixels in image. break if we reach end of message
     for y in range(0,height):
@@ -33,17 +33,14 @@ def image_lsb_encode(file_name, message):
             new_blue_pixel = b
 
             if i < len(bit_array):
-                # red pixel
                 new_red_pixel = get_new_bits(bin(r), bit_array[i])
                 i+=1
 
             if i < len(bit_array):
-                # green pixel
                 new_green_pixel = get_new_bits(bin(g), bit_array[i])
                 i+=1
 
             if i < len(bit_array):
-                # blue pixel
                 new_blue_pixel = get_new_bits(bin(b), bit_array[i])
                 i+=1
 
@@ -55,6 +52,7 @@ def image_lsb_encode(file_name, message):
                 break
 
     im.save(new_file_name)
+    im.close()
     
 def get_new_bits(old_bits, new_bit):
     new_bits = int(old_bits[:-1]+str(new_bit),2)
@@ -63,4 +61,5 @@ def get_new_bits(old_bits, new_bit):
 def get_max_message_len(file_name):
     im = Image.open(file_name)
     width, height = im.size
+    im.close()
     return int(width * height / 8)

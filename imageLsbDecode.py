@@ -28,6 +28,7 @@ def image_lsb_decode(file_name):
                 i+=1
         if end_of_message:
             break
+    im.close()
     if end_of_message:
         return "".join(chars)
     else:
