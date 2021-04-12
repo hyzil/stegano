@@ -11,40 +11,6 @@ import videoLsbEncode
 window = Tk()
 window.geometry("600x800")
 
-def base_view():
-    supported_formats1.pack(padx=15, pady=10)
-    supported_formats2.pack(padx=15, pady=10)
-    supported_formats3.pack(padx=15, pady=10)
-    supported_formats4.pack(padx=15, pady=10)
-    file_chooser1.pack(padx=15, pady=10)
-    file_chooser2.pack(padx=15, pady=10)
-    file_chooser3.pack(padx=15, pady=10)
-    file_chooser4.pack(padx=15, pady=10)
-    message_field1.pack_forget()
-    message_field2.pack_forget()
-    message_field3.pack_forget()
-    message_field4.pack_forget()
-    file_format_error_label1.pack_forget()
-    file_format_error_label2.pack_forget()
-    file_format_error_label3.pack_forget()
-    file_format_error_label4.pack_forget()
-    message_error_label1.pack_forget()
-    message_error_label2.pack_forget()
-    message_error_label3.pack_forget()
-    message_error_label4.pack_forget()
-    file_name_label1.pack_forget()
-    file_name_label2.pack_forget()
-    file_name_label3.pack_forget()
-    file_name_label4.pack_forget()
-    max_char_message1.pack_forget()
-    max_char_message2.pack_forget()
-    hide_message_button1.pack_forget()
-    hide_message_button2.pack_forget()
-    find_message_button1.pack_forget()
-    find_message_button2.pack_forget()
-    message_hidden_success1.pack_forget()
-    message_hidden_success2.pack_forget()
-
 def image_encode_tab_initial_view(error, success):
     supported_formats1.pack(padx=15, pady=10)
     file_chooser1["text"] = "choose file"
@@ -489,11 +455,8 @@ audio_decode_path = ""
 video_encode_path = ""
 video_decode_path = ""
 
-base_view()
+image_encode_tab_initial_view(0,0)
 
 tab_parent.pack(expand=1, fill="both")
 
 window.mainloop()
-
-
-
