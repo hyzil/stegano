@@ -9,6 +9,7 @@ import videoLsbDecode
 import videoLsbEncode
 
 window = Tk()
+window.title("Stegano")
 window.geometry("600x800")
 
 def image_encode_tab_initial_view(error, success):
@@ -19,15 +20,15 @@ def image_encode_tab_initial_view(error, success):
     max_char_message1.pack_forget()
     message_field1.delete(1.0,END)
     message_field1.pack_forget()
+    message_error_label1.pack_forget()
+    hide_message_button1.pack_forget()
     if error:
         file_format_error_label1.pack(padx=15, pady=10)
         message_hidden_success1.pack_forget()
-    message_error_label1.pack_forget()
-    hide_message_button1.pack_forget()
-    if success:
+    elif success:
         message_hidden_success1.pack(padx=15, pady=10)
         file_format_error_label1.pack_forget()
-    if not error or success:
+    else:
         file_format_error_label1.pack_forget()
         message_hidden_success1.pack_forget()
 
@@ -90,15 +91,15 @@ def audio_encode_tab_initial_view(error, success):
     max_char_message2.pack_forget()
     message_field2.delete(1.0,END)
     message_field2.pack_forget()
+    message_error_label2.pack_forget()
+    hide_message_button2.pack_forget()
     if error:
         file_format_error_label2.pack(padx=15, pady=10)
         message_hidden_success2.pack_forget()
-    message_error_label2.pack_forget()
-    hide_message_button2.pack_forget()
-    if success:
+    elif success:
         message_hidden_success2.pack(padx=15, pady=10)
         file_format_error_label2.pack_forget()
-    if not error or success:
+    else:
         file_format_error_label2.pack_forget()
         message_hidden_success2.pack_forget()
 
@@ -161,15 +162,16 @@ def video_encode_tab_initial_view(error, success):
     max_char_message3.pack_forget()
     message_field5.delete(1.0,END)
     message_field5.pack_forget()
+    
+    message_error_label5.pack_forget()
+    hide_message_button3.pack_forget()
     if error:
         file_format_error_label5.pack(padx=15, pady=10)
         message_hidden_success3.pack_forget()
-    message_error_label5.pack_forget()
-    hide_message_button3.pack_forget()
-    if success:
+    elif success:
         message_hidden_success3.pack(padx=15, pady=10)
         file_format_error_label5.pack_forget()
-    if not error or success:
+    else:
         file_format_error_label5.pack_forget()
         message_hidden_success3.pack_forget()
 
