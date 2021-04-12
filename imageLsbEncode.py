@@ -20,7 +20,9 @@ def image_lsb_encode(file_name, message):
     im = Image.open(new_file_name)
     width, height = im.size
     pixels = im.load()
+    gap = pseudo_random_seq(width*height)
 
+    cur_gap = 0
     i = 0
     # iterate over all pixels in image. break if we reach end of message
     for y in range(0,height):
@@ -31,20 +33,25 @@ def image_lsb_encode(file_name, message):
             new_red_pixel = r
             new_green_pixel = g
             new_blue_pixel = b
+            if cur_gap == gap:
+                gap = pseudo_random_seq(gap)
+                cur_gap = 0
+                if i < len(bit_array):
+                    new_red_pixel = get_new_bits(bin(r), bit_array[i])
+                    i+=1
 
-            if i < len(bit_array):
-                new_red_pixel = get_new_bits(bin(r), bit_array[i])
-                i+=1
+                if i < len(bit_array):
+                    new_green_pixel = get_new_bits(bin(g), bit_array[i])
+                    i+=1
 
-            if i < len(bit_array):
-                new_green_pixel = get_new_bits(bin(g), bit_array[i])
-                i+=1
+                if i < len(bit_array):
+                    new_blue_pixel = get_new_bits(bin(b), bit_array[i])
+                    i+=1
 
-            if i < len(bit_array):
-                new_blue_pixel = get_new_bits(bin(b), bit_array[i])
-                i+=1
-
-            pixels[x,y] = (new_red_pixel,new_green_pixel,new_blue_pixel)
+                pixels[x,y] = (new_red_pixel,new_green_pixel,new_blue_pixel)
+            
+            cur_gap+=1
+            #print(x,y)
 
             if i >= len(bit_array):
                 break
@@ -62,4 +69,22 @@ def get_max_message_len(file_name):
     im = Image.open(file_name)
     width, height = im.size
     im.close()
-    return int(width * height / 8)
+    gap = pseudo_random_seq(width*height)
+    cur_gap = 0
+    max_bits = 0
+    for y in range(0,height):
+        for x in range(0,width):
+            if cur_gap == gap:
+                gap = pseudo_random_seq(gap)
+                cur_gap = 0
+                max_bits+=1
+            cur_gap+=1
+    print(int(max_bits / 8))
+    return int(max_bits / 8)
+
+def pseudo_random_seq(seed):
+    mod1 = seed + 127
+    mod2 = 461
+    mult = 5
+    add = 129
+    return (mult*seed+add)%mod1%mod2+4
